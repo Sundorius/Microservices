@@ -1,0 +1,30 @@
+package com.sundorius.microservices.mappers.impl;
+
+import com.sundorius.microservices.domain.dto.CarDto;
+import com.sundorius.microservices.domain.enitities.CarEntity;
+import com.sundorius.microservices.mappers.Mapper;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CarMapperImpl implements Mapper<CarEntity, CarDto>
+{
+    private ModelMapper modelMapper;
+
+    public CarMapperImpl(ModelMapper modelMapper)
+    {
+        this.modelMapper = modelMapper;
+    }
+
+    @Override
+    public CarDto mapTo(CarEntity carEntity)
+    {
+        return modelMapper.map(carEntity, CarDto.class);
+    }
+
+    @Override
+    public CarEntity mapFrom(CarDto carDto)
+    {
+        return modelMapper.map(carDto, CarEntity.class);
+    }
+}
